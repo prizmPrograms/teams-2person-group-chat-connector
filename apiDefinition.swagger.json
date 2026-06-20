@@ -18,7 +18,58 @@
         "responses": {
           "default": {
             "description": "default",
-            "schema": {}
+            "schema": {
+              "type": "object",
+              "properties": {
+                "@odata.context": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
+                },
+                "topic": {
+                  "type": "string"
+                },
+                "createdDateTime": {
+                  "type": "string"
+                },
+                "lastUpdatedDateTime": {
+                  "type": "string"
+                },
+                "chatType": {
+                  "type": "string"
+                },
+                "webUrl": {
+                  "type": "string"
+                },
+                "tenantId": {
+                  "type": "string"
+                },
+                "isHiddenForAllMembers": {
+                  "type": "boolean"
+                },
+                "viewpoint": {
+                  "type": "string"
+                },
+                "onlineMeetingInfo": {
+                  "type": "string"
+                }
+              }
+            },
+            "headers": {
+              "client-request-id": {
+                "type": "string"
+              },
+              "content-type": {
+                "type": "string"
+              },
+              "location": {
+                "type": "string"
+              },
+              "request-id": {
+                "type": "string"
+              }
+            }
           }
         },
         "summary": "2人のグループチャットを作成する",

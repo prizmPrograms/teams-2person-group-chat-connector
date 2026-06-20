@@ -1,0 +1,41 @@
+{
+  "properties": {
+    "connectionParameters": {
+      "token": {
+        "type": "oauthSetting",
+        "oAuthSettings": {
+          "identityProvider": "aad",
+          "clientId": "<YOUR_ENTRA_APP_CLIENT_ID>",
+          "scopes": [],
+          "redirectMode": "GlobalPerConnector",
+          "redirectUrl": "https://global.consent.azure-apim.net/redirect",
+          "properties": {
+            "IsFirstParty": "False",
+            "AzureActiveDirectoryResourceId": "https://graph.microsoft.com",
+            "IsOnbehalfofLoginSupported": false
+          },
+          "customParameters": {
+            "loginUri": {
+              "value": "https://login.windows.net"
+            },
+            "tenantId": {
+              "value": "<YOUR_TENANT_ID_OR_common>"
+            },
+            "resourceUri": {
+              "value": "https://graph.microsoft.com"
+            },
+            "enableOnbehalfOfLogin": {
+              "value": "false"
+            }
+          }
+        }
+      }
+    },
+    "iconBrandColor": "#1f6f6f",
+    "scriptOperations": [],
+    "capabilities": [],
+    "policyTemplateInstances": [],
+    "publisher": "<YOUR_NAME_OR_ORG>",
+    "stackOwner": "<YOUR_NAME_OR_ORG>"
+  }
+}

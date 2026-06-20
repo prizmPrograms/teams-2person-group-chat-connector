@@ -1,0 +1,9 @@
+# Power Platform Connectors CLI (paconn) のローカル設定。
+# clientId / client secret などの機密が入ることがあるのでコミットしない。
+settings.json
+
+# OS / エディタ
+.DS_Store
+Thumbs.db
+.vscode/
+*.swp

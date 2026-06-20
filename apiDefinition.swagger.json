@@ -1,0 +1,125 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Create 2-person group chat (Teams)",
+    "description": "Microsoft Teams で 2 人のグループチャットを作成するカスタムコネクタ。Microsoft Graph の POST /v1.0/chats を呼び出します。",
+    "version": "1.0"
+  },
+  "host": "graph.microsoft.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/v1.0/chats": {
+      "post": {
+        "responses": {
+          "default": {
+            "description": "default",
+            "schema": {}
+          }
+        },
+        "summary": "2人のグループチャットを作成する",
+        "operationId": "CreateGroupChat",
+        "parameters": [
+          {
+            "name": "Content-Type",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "default": "application/json",
+            "x-ms-visibility": "internal"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "chatType": {
+                  "type": "string",
+                  "description": "チャットの種類（固定値 group）",
+                  "title": "",
+                  "default": "group",
+                  "x-ms-visibility": "internal"
+                },
+                "topic": {
+                  "type": "string",
+                  "title": "グループ名",
+                  "description": "グループチャットの表示名（チャット上部に表示されます）",
+                  "x-ms-visibility": "important"
+                },
+                "members": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "@odata.type": {
+                        "type": "string",
+                        "description": "メンバーの種類（固定値）",
+                        "default": "#microsoft.graph.aadUserConversationMember",
+                        "x-ms-visibility": "internal"
+                      },
+                      "roles": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "description": "メンバーの役割（固定値 owner）",
+                        "default": [
+                          "owner"
+                        ],
+                        "x-ms-visibility": "internal"
+                      },
+                      "user@odata.bind": {
+                        "type": "string",
+                        "title": "ユーザー",
+                        "description": "チャットに追加する人を https://graph.microsoft.com/v1.0/users('メールアドレス') の形式で指定します（例: https://graph.microsoft.com/v1.0/users('taro@example.com')）。メールアドレスの代わりにユーザーID（オブジェクトID）でも可。自分を含む2名を指定します。",
+                        "x-ms-visibility": "important"
+                      }
+                    },
+                    "required": [
+                      "@odata.type",
+                      "roles",
+                      "user@odata.bind"
+                    ]
+                  },
+                  "description": "メンバー（自分を含む2名を指定）"
+                }
+              },
+              "required": [
+                "chatType",
+                "members"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {},
+  "parameters": {},
+  "responses": {},
+  "security": [
+    {
+      "oauth2-auth": [
+        "https://graph.microsoft.com/Chat.Create https://graph.microsoft.com/User.Read offline_access"
+      ]
+    }
+  ],
+  "tags": [],
+  "securityDefinitions": {
+    "oauth2-auth": {
+      "type": "oauth2",
+      "flow": "accessCode",
+      "tokenUrl": "https://login.windows.net/common/oauth2/authorize",
+      "scopes": {
+        "https://graph.microsoft.com/Chat.Create https://graph.microsoft.com/User.Read offline_access": "https://graph.microsoft.com/Chat.Create https://graph.microsoft.com/User.Read offline_access"
+      },
+      "authorizationUrl": "https://login.microsoftonline.com/common/oauth2/authorize"
+    }
+  }
+}
